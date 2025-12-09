@@ -20,6 +20,19 @@
         font-size: 24px;
         font-weight: bold;
         background: #222;
+        justify-content: space-between;
+    }
+    .neon-text {
+        font-size: 28px;
+        font-weight: bold;
+        background: linear-gradient(90deg, #ff00ff, #00ffff, #ffdd00);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: neonGlow 1.5s ease-in-out infinite alternate;
+    }
+    @keyframes neonGlow {
+        from { text-shadow: 0 0 5px #fff, 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff; }
+        to { text-shadow: 0 0 10px #fff, 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00ffff; }
     }
     .container {
         padding: 20px;
@@ -44,22 +57,12 @@
         object-fit: cover;
         border-radius: 8px;
     }
-    #previewSection {
-        display: none;
-        flex-direction: column;
-        padding: 20px;
-    }
-    #gameIframe {
+    #mainGame {
         width: 100%;
         height: 600px;
         border: none;
         border-radius: 10px;
-        background: black;
-    }
-    .controls {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
     }
     button {
         padding: 10px 20px;
@@ -67,16 +70,30 @@
         border-radius: 8px;
         cursor: pointer;
         font-size: 16px;
+        margin-right: 10px;
+    }
+    .controls {
+        margin-bottom: 20px;
     }
 </style>
 </head>
 <body>
 
 <header>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS889vSqs5tiB53JcmisPQF1gUKEVvXarIeHA&s" width="40" />
-    Unblocked Games
+    <div style="display:flex; align-items:center; gap:12px;">
+        <img src="https://chatgpt.com/backend-api/estuary/content?id=file_00000000af3c720c9af7b586dfb413bc&ts=490363&p=fs&cid=1&sig=b503119f8c78c16069d9229dedc0e1c3bc91635f1a9aebce094a91fbcce194bc&v=0" width="40" />
+        <span class="neon-text">Saturn Games</span>
+    </div>
 </header>
 
+<!-- Main game always visible -->
+<iframe id="mainGame" src="https://math-homework.elude.cfd/"></iframe>
+
+<div class="controls">
+    <button onclick="goFullscreen()">Fullscreen</button>
+</div>
+
+<!-- Game cards -->
 <div class="container">
 
     <!-- 2048 Card -->
@@ -100,32 +117,17 @@
 
 </div>
 
-<!-- Preview Section -->
-<div id="previewSection">
-    <div class="controls">
-        <button onclick="goFullscreen()">Fullscreen</button>
-        <button onclick="quitGame()">Quit Game</button>
-    </div>
-
-    <iframe id="gameIframe" src=""></iframe>
-</div>
-
 <script>
 function openGame(url) {
-    document.getElementById("previewSection").style.display = "flex";
-    document.getElementById("gameIframe").src = url;
+    document.getElementById("mainGame").src = url;
     window.scrollTo(0, document.body.scrollHeight);
 }
 
-function quitGame() {
-    document.getElementById("previewSection").style.display = "none";
-    document.getElementById("gameIframe").src = "";
-}
-
 function goFullscreen() {
-    const iframe = document.getElementById("gameIframe");
+    const iframe = document.getElementById("mainGame");
     if (iframe.requestFullscreen) iframe.requestFullscreen();
 }
 </script>
+
 </body>
 </html>
