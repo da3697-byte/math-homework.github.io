@@ -34,6 +34,25 @@
         from { text-shadow: 0 0 5px #fff, 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff; }
         to { text-shadow: 0 0 10px #fff, 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00ffff; }
     }
+    #mainGame {
+        width: 100%;
+        height: 600px;
+        border: none;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+    .controls {
+        margin-bottom: 20px;
+        padding-left: 20px;
+    }
+    button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-right: 10px;
+    }
     .container {
         padding: 20px;
         display: grid;
@@ -57,24 +76,6 @@
         object-fit: cover;
         border-radius: 8px;
     }
-    #mainGame {
-        width: 100%;
-        height: 600px;
-        border: none;
-        border-radius: 10px;
-        margin-bottom: 20px;
-    }
-    button {
-        padding: 10px 20px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 16px;
-        margin-right: 10px;
-    }
-    .controls {
-        margin-bottom: 20px;
-    }
 </style>
 </head>
 <body>
@@ -91,36 +92,42 @@
 
 <div class="controls">
     <button onclick="goFullscreen()">Fullscreen</button>
+    <button onclick="quitGame()">Quit Game</button>
 </div>
 
 <!-- Game cards -->
 <div class="container">
-
-    <!-- 2048 Card -->
+    <!-- Claude 2048 Card -->
     <div class="game-card" onclick="openGame('https://claude.ai/public/artifacts/f223e559-9298-419d-8fdc-234cc6771392')">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSx4vr9eWn_wrbGpMzgFihOnXkbOiZOsmM4Yg&s" />
         <h3>2048</h3>
     </div>
 
-        <!-- Moto X3M Card -->
+    <!-- Elastic Man Card -->
     <div class="game-card" onclick="openGame('https://d21u3ic0kp9e91.cloudfront.net/elasticman/0/index.html')">
         <img src="data:image/jpeg;base64,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" />
         <h3>Elastic Man</h3>
     </div>
 
-    <!-- Placeholders -->
+    <!-- Additional Placeholders -->
     <div class="game-card"><img src="https://via.placeholder.com/200x220" /><h3>Moto X3M Winter</h3></div>
     <div class="game-card"><img src="https://via.placeholder.com/200x220" /><h3>Placeholder</h3></div>
     <div class="game-card"><img src="https://via.placeholder.com/200x220" /><h3>Placeholder</h3></div>
     <div class="game-card"><img src="https://via.placeholder.com/200x220" /><h3>Placeholder</h3></div>
     <div class="game-card"><img src="https://via.placeholder.com/200x220" /><h3>Placeholder</h3></div>
-
 </div>
 
 <script>
+const defaultGame = "https://math-homework.elude.cfd/";
+
 function openGame(url) {
     document.getElementById("mainGame").src = url;
     window.scrollTo(0, document.body.scrollHeight);
+}
+
+function quitGame() {
+    document.getElementById("mainGame").src = defaultGame;
+    window.scrollTo(0, 0);
 }
 
 function goFullscreen() {
@@ -128,6 +135,5 @@ function goFullscreen() {
     if (iframe.requestFullscreen) iframe.requestFullscreen();
 }
 </script>
-
 </body>
 </html>
