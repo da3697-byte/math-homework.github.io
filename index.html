@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Unblocked Games</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #111;
+        color: white;
+        margin: 0;
+        padding: 0;
+    }
+    header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 15px;
+        font-size: 24px;
+        font-weight: bold;
+        background: #222;
+    }
+    .container {
+        padding: 20px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+    }
+    .game-card {
+        background: #1e1e1e;
+        padding: 10px;
+        border-radius: 10px;
+        text-align: center;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+    .game-card:hover {
+        transform: scale(1.05);
+    }
+    .game-card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+    #previewSection {
+        display: none;
+        flex-direction: column;
+        padding: 20px;
+    }
+    #gameIframe {
+        width: 100%;
+        height: 600px;
+        border: none;
+        border-radius: 10px;
+        background: black;
+    }
+    .controls {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+    button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS889vSqs5tiB53JcmisPQF1gUKEVvXarIeHA&s" width="40" />
+    Unblocked Games
+</header>
+
+<div class="container">
+
+    <!-- 2048 Card -->
+    <div class="game-card" onclick="openGame('https://play2048.co/')">
+        <img src="https://chatgpt.com/backend-api/estuary/content?id=file_00000000af3c720c9af7b586dfb413bc&ts=490363&p=fs&cid=1&sig=b503119f8c78c16069d9229dedc0e1c3bc91635f1a9aebce094a91fbcce194bc&v=0" />
+        <h3>2048</h3>
+    </div>
+
+    <!-- Placeholders -->
+    <div class="game-card"><img src="https://via.placeholder.com/200x220" /><h3>Placeholder</h3></div>
+    <div class="game-card"><img src="https://via.placeholder.com/200x220" /><h3>Placeholder</h3></div>
+    <div class="game-card"><img src="https://via.placeholder.com/200x220" /><h3>Placeholder</h3></div>
+    <div class="game-card"><img src="https://via.placeholder.com/200x220" /><h3>Placeholder</h3></div>
+    <div class="game-card"><img src="https://via.placeholder.com/200x220" /><h3>Placeholder</h3></div>
+
+</div>
+
+<!-- Preview Section -->
+<div id="previewSection">
+    <div class="controls">
+        <button onclick="goFullscreen()">Fullscreen</button>
+        <button onclick="quitGame()">Quit Game</button>
+    </div>
+
+    <iframe id="gameIframe" src=""></iframe>
+</div>
+
+<script>
+function openGame(url) {
+    document.getElementById("previewSection").style.display = "flex";
+    document.getElementById("gameIframe").src = url;
+    window.scrollTo(0, document.body.scrollHeight);
+}
+
+function quitGame() {
+    document.getElementById("previewSection").style.display = "none";
+    document.getElementById("gameIframe").src = "";
+}
+
+function goFullscreen() {
+    const iframe = document.getElementById("gameIframe");
+    if (iframe.requestFullscreen) iframe.requestFullscreen();
+}
+</script>
+</body>
+</html>
